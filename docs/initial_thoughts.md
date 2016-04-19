@@ -1,3 +1,5 @@
+![alt text](http://www.ices.dk/_layouts/15/1033/images/icesimg/iceslogo.png "ICES")
+
 # Initial thoughts on streamlining recurrent assessments
 
 ## Core issues we are addressing
@@ -11,6 +13,7 @@
 
 * Encapsulated framework
 * use existing procedures and processes
+* ***designed flexibility***
 
 ## percieved/hoped for benefits
 
@@ -20,7 +23,7 @@
 ## constraints
 
 * deliver in 2 years
-* 
+* minimal upkeep?
 
 ## wider issues
 
@@ -29,4 +32,8 @@
 * the variety of approaches
 * how much standardisation to apply / impose
 * lessons from intercatch?
-* 
+* who updates the procedures at benchmark?
+* user freindly
+
+
+
