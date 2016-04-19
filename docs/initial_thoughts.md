@@ -35,5 +35,15 @@
 * who updates the procedures at benchmark?
 * user freindly
 
+## Scoping possibilities
+
+* allow "organic" working: each stock assessment is independent and gets its own methods and processes that evolve over time
+* streamline working: stocks are restricted in thier use of tools and data to be of a type defined by us.
+
+At one end of the spectrum an example would be to take al the stock assessments as they are, and fix everything, only alowing the user to change the inputs.  
+
+
+
+
 
 
