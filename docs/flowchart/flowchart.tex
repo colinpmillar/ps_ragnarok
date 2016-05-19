@@ -1,0 +1,32 @@
+\documentclass{article}
+
+\usepackage[latin1]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\begin{document}
+\pagestyle{empty}
+
+
+% Define block styles
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=5cm, minimum height=4em]
+
+    
+\begin{tikzpicture}[node distance = 3cm, auto]
+
+    % Place nodes
+    \node [cloud] (modelfitting) {Model fitting};
+    \node [block, above left of=modelfitting] (data) {Data};
+    \node [block, above right of=modelfitting] (model) {Model};
+    \node [block, below of=modelfitting] (output) {Output};
+
+    % Draw edges
+    \path [line] (data) -- (modelfitting);
+    \path [line] (model) -- (modelfitting);
+    \path [line] (modelfitting) -- (output);
+
+\end{tikzpicture}
+
+
+\end{document}
