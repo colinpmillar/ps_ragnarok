@@ -21,3 +21,8 @@ vignettes/*.pdf
 
 # ignore all data for now
 data/
+
+# doc auxiliarry files and pdfs
+docs/*/*.aux
+docs/*/*.log
+docs/*/*.pdf
