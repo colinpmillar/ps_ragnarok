@@ -1,7 +1,17 @@
+---
+title: "Update Assessments Project"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+---
 
-![](http://www.ices.dk/_layouts/15/1033/images/icesimg/iceslogo.png "ICES")
+<!-- ![](http://www.ices.dk/_layouts/15/1033/images/icesimg/iceslogo.png "ICES") -->
 
-# Streamlining recurrent assessments
+<br>
+
+# Overview
 
 ## Core issues we are addressing
 
