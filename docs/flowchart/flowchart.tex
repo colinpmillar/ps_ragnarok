@@ -3,30 +3,236 @@
 \usepackage[latin1]{inputenc}
 \usepackage{tikz}
 \usetikzlibrary{shapes,arrows}
-\begin{document}
-\pagestyle{empty}
+\usetikzlibrary{calc,positioning,shapes.geometric}
 
+
+\begin{document}
+
+\title{Diagrams for update assessment project plan}
+\author{Colin Millar and Arni Magnusson}
+\maketitle
+
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+
+% preamble code / definitions
 
 % Define block styles
-\tikzstyle{block} = [rectangle, draw, fill=blue!20, text width=5em, text centered, rounded corners, minimum height=4em]
-\tikzstyle{line} = [draw, -latex']
-\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=5cm, minimum height=4em]
+\tikzstyle{object}=[draw, fill=blue!20, text width=5em, text centered, minimum height=2.5em]
+\tikzstyle{process} = [object, text width=10em, fill=red!20,  minimum height=4em, rounded corners]
+\tikzstyle{db} = [object,cylinder,aspect=0.5,shape border rotate=90, fill=red!20]
 
-    
+% Define layers
+\pgfdeclarelayer{background}
+\pgfsetlayers{background,main}
+
+
+
+
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+
+\section{Shapes}
+
+\subsection{database}
+
+\begin{tikzpicture}
+  \node[db] (datras) {DATRAS};
+\end{tikzpicture}
+
+\subsection{object}
+
+\begin{tikzpicture}
+  \node[object] (data) {Data};
+\end{tikzpicture}
+
+\subsection{process}
+
+\begin{tikzpicture}
+  \node[process] (model) {Model fitting};
+\end{tikzpicture}
+
+
+
+
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+
+\section{Structures}
+
+\subsection{Core structure}
+
 \begin{tikzpicture}[node distance = 3cm, auto]
 
     % Place nodes
-    \node [cloud] (modelfitting) {Model fitting};
-    \node [block, above left of=modelfitting] (data) {Data};
-    \node [block, above right of=modelfitting] (model) {Model};
-    \node [block, below of=modelfitting] (output) {Output};
+    \node [process] (modelfitting) {Model fitting};
+    \node [object, above left of=modelfitting] (data) {Data};
+    \node [object, above right of=modelfitting] (model) {Model};
+    \node [object, below of=modelfitting] (output) {Output};
 
     % Draw edges
-    \path [line] (data) -- (modelfitting);
-    \path [line] (model) -- (modelfitting);
-    \path [line] (modelfitting) -- (output);
+    \path [draw, ->] (data) -- (modelfitting);
+    \path [draw, ->] (model) -- (modelfitting);
+    \path [draw, ->] (modelfitting) -- (output);
+
+\end{tikzpicture}
+
+\subsection{Data flow}
+
+% Define distances for bordering
+\def\blockdist{3.2}
+\def\edgedist{0.5}
+
+
+\begin{tikzpicture}
+
+  % central node
+  \node (db_input) [db]  {Input \\database \\(staging)};
+
+  % input nodes
+  \path (db_input.west)+(-\blockdist,2.5) node (datras) [db] {DATRAS};
+  \path (db_input.west)+(-\blockdist,0.5) node (rdb)[db] {RDB};
+  \path (db_input.west)+(-\blockdist,-3.0) node (coordinator)[object] {Stock Coordinator};
+
+  % lines
+  \path [draw, ->] (datras.east) -- node [above, sloped] {webservice} (db_input.160) ;
+  \path [draw, ->] (rdb.east) -- node [above, sloped] {webservice} (db_input.180);
+  \path [draw, ->] (coordinator.east) -- node [above, sloped, pos=0.35] {validation} (db_input.200);
+
+  % output node
+  \path (db_input.east)+(\blockdist,0) node (assessment) [object] {Input data};
+
+  % lines
+  \path [draw, ->] (db_input.east) -- node [above] {webservice} (assessment.west);
+
+  % box title
+  \path (datras.north -| db_input.east) + (0,-0.2) node (sql06)[left] {SQL06};
+
+
+  % background
+  \begin{pgfonlayer}{background}
+    % define corners of rectangle
+    \path (datras.north west)+(-\edgedist,\edgedist) node (a) {};
+    \path (db_input.south east)+(\edgedist,-\edgedist) node (b) {};
+
+    % draw background
+    \path[fill=yellow!20,rounded corners, draw=black!50, dashed] (a) rectangle (b);
+  \end{pgfonlayer}
 
 \end{tikzpicture}
 
 
+
+
 \end{document}
+
+
+%\begin{tikzpicture}
+%    \node (wa) [process]  {System Combination};
+%    \path (wa.west)+(-3.2,1.5) node (asr1) [object] {$ASR_1$};
+%    \path (wa.west)+(-3.2,0.5) node (asr2)[object] {$ASR_2$};
+%    \path (wa.west)+(-3.2,-1.0) node (dots)[ann] {$\vdots$};
+%    \path (wa.west)+(-3.2,-2.0) node (asr3)[object] {$ASR_N$};
+
+%     \path (wa.east)+(\blockdist,0) node (vote) [object] {$\theta_0,\theta_1,...,\theta_M$\\Estimated Parameters};
+%
+%     \path [draw, ->] (asr1.east) -- node [above] {}
+%         (wa.160) ;
+%     \path [draw, ->] (asr2.east) -- node [above] {}
+%         (wa.180);
+%     \path [draw, ->] (asr3.east) -- node [above] {}
+%         (wa.200);
+%     \path [draw, ->] (wa.east) -- node [above] {}
+%         (vote.west);
+%
+%
+%     \path (wa.south) +(0,-\blockdist) node (asrs) {System Combination - Training};
+%
+%     \begin{pgfonlayer}{background}
+%         \path (asr1.west |- asr1.north)+(-0.5,0.3) node (a) {};
+%         \path (wa.south -| wa.east)+(+0.5,-0.3) node (b) {};
+%         \path (vote.east |- asrs.east)+(+0.5,-0.5) node (c) {};
+%
+%         \path[fill=yellow!20,rounded corners, draw=black!50, dashed]
+%             (a) rectangle (c);
+%         \path (asr1.north west)+(-0.2,0.2) node (a) {};
+%
+%     \end{pgfonlayer}
+%
+%     % Validation Layer is the same except that there are a set of nodes and links which are added
+%
+%
+%     \path (wa.south)+(-2.0,-7.5) node (syscomb) [sc] {\textbf{System Combination \\Algorithm}\\Estimated Parameters\\from training};
+%     \path (syscomb.west)+(-2.2,1.5) node (asrt1) [object] {$ASR_1$};
+%     \path (syscomb.west)+(-2.2,0.5) node (asrt2)[object] {$ASR_2$};
+%     \path (syscomb.west)+(-2.2,-1.0) node (dots)[ann] {$\vdots$};
+%     \path (syscomb.west)+(-2.2,-2.0) node (asrt3)[object] {$ASR_N$};
+%
+%     \path [draw, ->] (asrt1.east) -- node [above] {}
+%         (syscomb.160) ;
+%     \path [draw, ->] (asrt2.east) -- node [above] {}
+%         (syscomb.180);
+%     \path [draw, ->] (asrt3.east) -- node [above] {}
+%         (syscomb.200);
+%
+%
+%     \path (wa.south) +(0,-\blockdist) node (sct) {System Combination - Training};
+%
+%
+%     \path (syscomb.east)+(1.0,0.0) node (bwtn) {};
+%
+%     % Note how the single nodes are repeated using for loop
+%     \foreach \x in {0,1,...,4}
+%     {
+%         \draw (bwtn.east)+(\x,0) node (asr\x-2)[]{};
+%         \fill (bwtn.east)+(\x,0) circle (0.1cm);
+%     }
+%
+%     \path [draw, ->] (syscomb.east) -- node [above] {}
+%         (bwtn.east);
+% 	\path [draw, ->] (asr0-2) -- node [above] {@}
+%         (asr1-2);
+%     \path [draw, -] (asr1-2) -- node [above] {b}
+%         (asr2-2);
+%     \path [draw, -] (asr2-2) -- node [above] {z}
+%         (asr3-2);
+%     \path [draw, -] (asr3-2) -- node [above] {}
+%         (asr4-2);
+%
+%     \path [draw, ->] (asr0-2) edge[bend  right]  node [below] {@}
+%         (asr1-2);
+%     \path [draw, ->] (asr1-2) edge[bend  right]  node [below] {b}
+%         (asr2-2);
+%     \path [draw, ->] (asr2-2) edge[bend  right]  node [below] {c}
+%         (asr3-2);
+%     \path [draw, ->] (asr4-2) node[]{} (asr4-2)+(1.0,0);
+%
+%     \begin{scope}[looseness=1.6]
+%         \path [draw, ->] (asr0-2) edge[bend  right=90]  node [below] {a}
+%             (asr1-2);
+%         \path [draw, ->] (asr1-2) edge[bend  right=90]  node [below] {b}
+%             (asr2-2);
+%         \path [draw, ->] (asr2-2) edge[bend  right=90]  node [below] {c}
+%             (asr3-2);
+%     \end{scope}
+%     \path (asr3-2.east)+(1.5,0.0) node (bw)[object] {Best Word Sequence\\$\arg\max$};
+%
+%     \path [draw, -] (asr1-2.east) node [below] {}
+%         (bw.west);
+%
+%     \begin{pgfonlayer}{background}
+%         \path (asrt1.west)+(-0.5,1.0) node (g) {};
+%         \path (bw.east |- syscomb.south)+(0.5,-1.5) node (h) {};
+%
+%         \path[fill=yellow!20,rounded corners, draw=black!50, dashed]
+%             (g) rectangle (h);
+%
+%         \path [draw, ->] (vote.south) edge[bend  left=90]  node [below] {Used in validation}
+%             (syscomb.30);
+%
+%     \end{pgfonlayer}
+%
+%     \path (asr1-2.south) +(-\blockdist,-\blockdist)
+%         node (asrs) {System Combination - Validation};
+%
+% \end{tikzpicture}
