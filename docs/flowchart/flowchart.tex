@@ -2,6 +2,8 @@
 
 \usepackage[latin1]{inputenc}
 \usepackage{tikz}
+%\usetikzlibrary{external}
+%\tikzexternalize % activate!
 \usetikzlibrary{shapes,arrows}
 \usetikzlibrary{calc,positioning,shapes.geometric}
 
@@ -60,24 +62,8 @@
 
 \section{Structures}
 
-\subsection{Core structure}
 
-\begin{tikzpicture}[node distance = 3cm, auto]
-
-    % Place nodes
-    \node [process] (modelfitting) {Model fitting};
-    \node [object, above left of=modelfitting] (data) {Data};
-    \node [object, above right of=modelfitting] (model) {Model};
-    \node [object, below of=modelfitting] (output) {Output};
-
-    % Draw edges
-    \path [draw, ->] (data) -- (modelfitting);
-    \path [draw, ->] (model) -- (modelfitting);
-    \path [draw, ->] (modelfitting) -- (output);
-
-\end{tikzpicture}
-
-\subsection{Data flow}
+\subsection{Data flow to create input database}
 
 % Define distances for bordering
 \def\blockdist{3.2}
@@ -121,6 +107,98 @@
 
 \end{tikzpicture}
 
+
+\subsection{Update assessment process}
+
+
+\begin{tikzpicture}[node distance = \blockdist cm, auto]
+
+    % Place nodes
+    \node [process] (modelfitting) {Model fitting};
+    \node [object, above left of=modelfitting] (assessment) {Input data};
+    \node [object, above right of=modelfitting] (model) {Model};
+    \node [object, below of=modelfitting] (output) {Output};
+
+    % Draw edges
+    \path [draw, ->] (assessment) -- (modelfitting);
+    \path [draw, ->] (model) -- (modelfitting);
+    \path [draw, ->] (modelfitting) -- (output);
+
+\end{tikzpicture}
+
+
+
+\subsection{Combined process}
+
+\begin{tikzpicture}[node distance = \blockdist cm, auto]
+
+  % Place nodes
+  \node [process] (modelfitting) {Model fitting};
+  \node [object, above left of=modelfitting] (assessment) {Input data};
+  \node [object, above right of=modelfitting] (model) {Model};
+  \node [object, below of=modelfitting] (output) {Output};
+
+  % Draw edges
+  \path [draw, ->] (assessment) -- (modelfitting);
+  \path [draw, ->] (model) -- (modelfitting);
+  \path [draw, ->] (modelfitting) -- (output);
+
+  % box title
+  \path (output.south -| model.east) + (0.4,-0.2) node (lamp)[left] {ArniColin1};
+
+  % background
+  \begin{pgfonlayer}{background}
+    % define corners of rectangle
+    \path (assessment.north west)+(-\edgedist,\edgedist) node (a) {};
+    \path (output.south -| model.east)+(\edgedist,-\edgedist) node (b) {};
+
+    % draw background
+    \path[fill=yellow!20,rounded corners, draw=black!50, dashed] (a) rectangle (b);
+  \end{pgfonlayer}
+
+
+
+
+  %% now for the input database links
+  % central node
+  \path (assessment.west)+(-\blockdist,0)  node (db_input) [db]  {Input \\database \\(staging)};
+
+  % output node
+  %\path (db_input.east)+(\blockdist,0) node (assessment) [object] {Input data};
+
+  % lines
+  \path [draw, ->] (db_input.east) -- node [above] {webservice} (assessment.west);
+
+
+  % input nodes
+  \path (db_input.west)+(-\blockdist,2.5) node (datras) [db] {DATRAS};
+  \path (db_input.west)+(-\blockdist,0.5) node (rdb)[db] {RDB};
+  \path (db_input.west)+(-\blockdist,-3.0) node (coordinator)[object] {Stock Coordinator};
+
+  % lines
+  \path [draw, ->] (datras.east) -- node [above, sloped] {webservice} (db_input.160) ;
+  \path [draw, ->] (rdb.east) -- node [above, sloped] {webservice} (db_input.180);
+  \path [draw, ->] (coordinator.east) -- node [above, sloped, pos=0.35] {validation} (db_input.200);
+
+
+  % box title
+  \path (datras.north -| db_input.east) + (0,-0.2) node (sql06)[left] {SQL06};
+
+  % background
+  \begin{pgfonlayer}{background}
+    % define corners of rectangle
+    \path (datras.north west)+(-\edgedist,\edgedist) node (a) {};
+    \path (db_input.south east)+(\edgedist,-\edgedist) node (b) {};
+
+    % draw background
+    \path[fill=yellow!20,rounded corners, draw=black!50, dashed] (a) rectangle (b);
+  \end{pgfonlayer}
+
+
+  % join output
+  \path [draw, bend left, ->]  (output) to node [auto] {webservice?} (db_input);
+
+\end{tikzpicture}
 
 
 
