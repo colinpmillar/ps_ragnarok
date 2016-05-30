@@ -1,0 +1,115 @@
+---
+title: Transparent Assessment Framework (TAF)
+output:
+  html_vignette:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+    mathjax: null
+---
+
+<br>
+
+# Background
+
+## ICES & Stock Assessments
+
+* Working groups, benchmarks
+* Input, model, output
+* Sharepoint, report, annex, graphs
+
+## Challenges
+
+* Hard to find data
+* Hard to rerun model
+* Sharepoint files are not directly accessible
+
+# Objectives
+
+## Unified Archive
+
+* All ICES assessments in one place
+* Data-limited stocks may be included as well
+
+## Accessible Online
+
+* Open read access
+* Write access on a per user basis
+
+## Rerun Assessment Online
+
+* Computational server runs models
+* Old assessments will run as well
+
+## Interfacing with Other ICES Services
+
+* Pass input from DATRAS and Intercatch to TAF
+* Pass output from TAF to stock assessment graphs
+
+## Reliable and Simple
+
+* System should be as simple as possible
+* Some desired functionality will be sacrificed
+* The system must still work if/when Arni & Colin leave
+
+# Design Notes
+
+## Minimize Mouse Clicks
+
+* User interface should involve as few mouse clicks as possible
+* This allows data to flow between programs, and supports scripting
+* Feedback from informal user surveys has focused on this point
+
+## Build on Stable Technologies
+
+* The simple [data.hafro.is](http://data.hafro.is) is just HTTP and CSV
+* This directory tree is transparent, easy to maintain and use
+* The successful [stockassessment.org](http://stockassessment.org) uses
+  makefiles
+* A makefile implements the flow of input->model->output
+
+## Virtual Machines
+
+* Some models run only in Linux, while some run only in Windows
+* Therefore, the web interface will probably have two buttons:\
+  `Run makefile in Linux`\
+  `Run makefile in Windows`
+* These buttons would invoke separate virtual machines
+
+## Library of Platforms and Models
+
+* Some models run in R, some are ADMB applications, etc.
+* Some only run in older versions of R, ADMB, etc.
+* Therefore, the system should provide many versions ready to run
+* One frozen version of R (with pkgs) could be defined for each year
+
+# Timeline and Milestones
+
+## Web Server (Experimental)
+
+* Step 1: server showing a simple message
+* Step 2: server providing a directory tree of CSV files
+* Step 3: server that runs a makefile
+
+## Test Cases
+
+* `linreg`: linear regression that reads input data and writes output
+* `adsep`: Icelandic saithe, a basic ADSEP model run
+* `gadget`: Icelandic tusk, a basic Gadget model run
+* `sam`: Icelandic saithe, a basic SAM model run
+* `tsa`: Scottish cod in 6a, a basic TSA model run
+
+## Web Server (Operational)
+
+* Step 4: server that maintains all files inside Git version control
+* Step 5: server with early user interface
+
+## Deployment
+
+* First new assessment, working closely with a stock coordinator
+* First WG, with extensive support from the Secretariat
+
+## Web Server (Full)
+
+* Step 6: complete user interface, based on feedback from first WG
+* Step 7: other improvements, as needed
