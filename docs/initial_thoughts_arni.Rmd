@@ -24,9 +24,11 @@ output:
 * Hard to rerun model
 * Sharepoint files are not directly accessible
 
+<br>
+
 # Objectives
 
-## Unified Archive
+## Archive of All Assessments
 
 * All ICES assessments in one place
 * Data-limited stocks may be included as well
@@ -39,7 +41,7 @@ output:
 ## Rerun Assessment Online
 
 * Computational server runs models
-* Old assessments will run as well
+* Old assessments can be run as well
 
 ## Interfacing with Other ICES Services
 
@@ -52,7 +54,30 @@ output:
 * Some desired functionality will be sacrificed
 * The system must still work if/when Arni & Colin leave
 
-# Design Notes
+<br>
+
+# Design
+
+## Web Server
+
+* All interaction with the user is through a website
+* Main interactions are: upload input data, run model, provide output
+* Output is provided in two formats: online browsing and read directly
+* More advanced features: validate data/results, compare data/results
+
+## Computational Server
+
+* The machine that runs assessment models
+* Needs to be able to run a wide variety of models
+* Requires access to uploaded data, executable programs, and scripts
+* Model output will be stored in a dedicated area
+
+## Archives Accessible Online
+
+* Final input data for each assessment
+* Scripts that were used in each assessment
+* Model executable that was used in each assessment
+* Output from each assessment
 
 ## Minimize Mouse Clicks
 
@@ -60,13 +85,26 @@ output:
 * This allows data to flow between programs, and supports scripting
 * Feedback from informal user surveys has focused on this point
 
+<br>
+
+# Implementation
+
+## Web Server
+
+* Apache is the world's most used web server software
+* The simple [data.hafro.is](http://data.hafro.is) is just HTTP and CSV\
+  (this directory tree is transparent, easy to maintain and use)
+
+
 ## Build on Stable Technologies
 
-* The simple [data.hafro.is](http://data.hafro.is) is just HTTP and CSV
-* This directory tree is transparent, easy to maintain and use
+* Apache is the world's most used web server software
+* The simple [data.hafro.is](http://data.hafro.is) is just HTTP and CSV\
+  (this directory tree is transparent, easy to maintain and use)
 * The successful [stockassessment.org](http://stockassessment.org) uses
-  makefiles
-* A makefile implements the flow of input->model->output
+  makefiles\
+  (a makefile implements the flow of input->model->output)
+* R scripts are already used by many to organize their stock assessments
 
 ## Virtual Machines
 
@@ -83,13 +121,16 @@ output:
 * Therefore, the system should provide many versions ready to run
 * One frozen version of R (with pkgs) could be defined for each year
 
+<br>
+
 # Timeline and Milestones
 
 ## Web Server (Experimental)
 
-* Step 1: server showing a simple message
+* Step 1: server showing a simple message on a webpage
 * Step 2: server providing a directory tree of CSV files
-* Step 3: server that runs a makefile
+* Step 3: server that allows users to upload data
+* Step 4: server that runs a makefile
 
 ## Test Cases
 
@@ -101,8 +142,8 @@ output:
 
 ## Web Server (Operational)
 
-* Step 4: server that maintains all files inside Git version control
-* Step 5: server with early user interface
+* Step 5: server that maintains all files inside Git version control
+* Step 6: server with early user interface
 
 ## Deployment
 
@@ -111,5 +152,5 @@ output:
 
 ## Web Server (Full)
 
-* Step 6: complete user interface, based on feedback from first WG
-* Step 7: other improvements, as needed
+* Step 7: complete user interface, based on feedback from first WG
+* Step 8: other improvements, as needed
