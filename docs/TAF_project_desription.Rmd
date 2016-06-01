@@ -8,27 +8,73 @@ output:
     mathjax: null
 ---
 
+<!-- ![](http://www.ices.dk/_layouts/15/1033/images/icesimg/iceslogo.png "ICES") -->
+
 <br>
 
-# Background
+# Summary
 
-## ICES & Stock Assessments
+* ...
 
-* Working groups, benchmarks
+
+<br>
+
+# Project Background
+
+## ICES stock assessment current working practices
+
+* Working groups, benchmarks, update assessments
 * Input, model, output
-* Sharepoint, report, annex, graphs
+* Sharepoint, report, stock annex, graphs
 
-## Challenges
+
+
+<br>
+
+# Project Overview / Description
+
+## Core issues to address
 
 * Hard to find data
 * Hard to rerun model
 * Sharepoint files are not directly accessible
 
+## Percieved benefits
+
+* transparency
+* reproduceability
+* improved quality
+* time efficiency?
+* protection against loss of "institutional memory"
+
+## Project design guide
+
+* "empty desk scenario": with only internet access anyone can rerun a stock assessment.
+* encapsulated framework
+* use existing procedures and processes
+* reliable and simple
+
+## constraints
+
+* deliver in 2 years
+
+## Difficulties
+
+* buy in by stock assessors
+* issues with ownership of assessments and process
+* the variety of approaches
+* who implements updates to procedures e.g at benchmark
+
+# Aim
+
+*To implement a system that will give stock assessors the tools to archive their methods, data and results, so that they can
+replicated at a future date and also be rerun the following year with minimal changes*
+
 <br>
 
 # Objectives
 
-## Archive of All Assessments
+## Archive of All Stock Assessments
 
 * All ICES assessments in one place
 * Data-limited stocks may be included as well
@@ -53,6 +99,40 @@ output:
 * System should be as simple as possible
 * Some desired functionality will be sacrificed
 * The system must still work if/when Arni & Colin leave
+
+
+<br>
+
+# Scope
+
+## The system **will**
+* work for all stock assessment
+* allow assessments to be rerun quickly and automatically
+* allow alternative assessments to be archived (i.e. allow multple assessment runs)
+* provide a way to track changes in input data from year to year
+* provide a way to track changes in assessment scripts from year to year
+* require experts to use R in thier stock assessments
+
+## The system **will not**
+* archive user code for ad-hoc analyses
+
+## The system **might**
+* allow users to work from their own hard drives
+* allow users to use different analysis software?
+
+
+<br>
+
+# Evaluation Criteria
+
+## ...
+
+
+
+
+
+
+
 
 <br>
 
@@ -123,6 +203,26 @@ output:
 
 <br>
 
+
+# Deliverables
+
+## Input database
+
+* Implement a database of validated quality controlled input data that can be read online
+
+## Code archive
+
+* Develop an archive of code used to run stock assessments that is accessible online
+
+## Computational Server
+
+* Implement a server that can
+
+## Web access to Computational server
+
+
+<br>
+
 # Timeline and Milestones
 
 ## Web Server (Experimental)
@@ -154,3 +254,32 @@ output:
 
 * Step 7: complete user interface, based on feedback from first WG
 * Step 8: other improvements, as needed
+
+
+<br>
+
+# Resources required
+
+## Servers
+
+* Computational server running linux
+* Computational server running windows
+* Web server
+* Data server
+
+## databases / Archives
+
+* Input database
+* Output database
+* code archive
+* methods / executable archive
+
+## Services
+
+* webservices to DATRAS
+* webservices to Intercatch
+* webservices to RDB
+
+
+
+
