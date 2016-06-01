@@ -165,6 +165,43 @@ replicated at a future date and also be rerun the following year with minimal ch
 * This allows data to flow between programs, and supports scripting
 * Feedback from informal user surveys has focused on this point
 
+
+<br>
+
+# Workflow options
+
+## Fist time use
+
+* Upload final input data to input database
+* write script to read data from input database
+* write script to do data manipulation
+* write script to run model (define executable etc.)
+* write script to write output into a standard format
+* test scripts on user PC
+* upload scripts to stock folder (code archive)
+* click *run model*
+* check input data and results
+* click *finalise assessment* to archive the assessment
+
+## Update assessment
+
+* Upload final input data to input database
+* download working directory structure
+* amend script to read data from input database
+* amend script to do data manipulation
+* test scripts on user PC
+* upload scripts to stock folder (code archive)
+* click *run model*
+* check input data and results
+* click *finalise assessment* to archive the assessment
+
+## Rerun assessment
+
+* click *run model*
+* check input data and results
+
+
+
 <br>
 
 # Implementation
@@ -210,15 +247,28 @@ replicated at a future date and also be rerun the following year with minimal ch
 
 * Implement a database of validated quality controlled input data that can be read online
 
+## Output database
+
+* implement a database of standard outputs from final stock assessment runs
+
 ## Code archive
 
 * Develop an archive of code used to run stock assessments that is accessible online
 
+## Methods (tools) archive
+
+* develop an archive of computational tools (to be available on line?)
+
 ## Computational Server
 
-* Implement a server that can
+* Implement a linux server that can run R scripts, run executables, access the web
+* Implement a windows server that can run R scripts, run executables, access the web
 
 ## Web access to Computational server
+
+* implement a user interface on a webserver and show on the sharepoint (http://taf.ices.dk/)
+
+
 
 
 <br>
@@ -279,6 +329,7 @@ replicated at a future date and also be rerun the following year with minimal ch
 * webservices to DATRAS
 * webservices to Intercatch
 * webservices to RDB
+* access to output database by standard graphs
 
 
 
