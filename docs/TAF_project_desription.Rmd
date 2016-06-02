@@ -43,6 +43,8 @@ output:
 
 * transparency
 * reproduceability
+* traceability
+* structured
 * improved quality
 * time efficiency?
 * protection against loss of "institutional memory"
@@ -58,17 +60,13 @@ output:
 
 * deliver in 2 years
 
-## Difficulties
-
-* buy in by stock assessors
-* issues with ownership of assessments and process
-* the variety of approaches
-* who implements updates to procedures e.g at benchmark
 
 # Aim
 
-*To implement a system that will give stock assessors the tools to archive their methods, data and results, so that they can
-replicated at a future date and also be rerun the following year with minimal changes*
+*To implement a system that will give stock assessors the tools<br>
+ to archive their data, methods and results, so that they can be<br>
+ replicated at a future date and also be rerun the following year<br>
+ with minimal changes*
 
 <br>
 
@@ -106,12 +104,12 @@ replicated at a future date and also be rerun the following year with minimal ch
 # Scope
 
 ## The system **will**
-* work for all stock assessment
-* allow assessments to be rerun quickly and automatically
+* work for all stock assessments
+* allow assessments to be rerun quickly
 * allow alternative assessments to be archived (i.e. allow multple assessment runs)
 * provide a way to track changes in input data from year to year
 * provide a way to track changes in assessment scripts from year to year
-* require experts to use R in thier stock assessments
+* require experts to use R in their stock assessments
 
 ## The system **will not**
 * archive user code for ad-hoc analyses
@@ -123,13 +121,10 @@ replicated at a future date and also be rerun the following year with minimal ch
 
 <br>
 
-# Evaluation Criteria
+<!-- # Evaluation Criteria
 
-## ...
-
-
-
-
+## 
+-->
 
 
 
@@ -141,7 +136,7 @@ replicated at a future date and also be rerun the following year with minimal ch
 ## Web Server
 
 * All interaction with the user is through a website
-* Main interactions are: upload input data, run model, provide output
+* Main interactions are: upload input data, run model, get output
 * Output is provided in two formats: online browsing and read directly
 * More advanced features: validate data/results, compare data/results
 
@@ -168,7 +163,7 @@ replicated at a future date and also be rerun the following year with minimal ch
 
 <br>
 
-# Workflow options
+# Workflow options (one idea)
 
 ## Fist time use
 
@@ -212,23 +207,16 @@ replicated at a future date and also be rerun the following year with minimal ch
 * The simple [data.hafro.is](http://data.hafro.is) is just HTTP and CSV\
   (this directory tree is transparent, easy to maintain and use)
 
-
 ## Build on Stable Technologies
 
-* Apache is the world's most used web server software
-* The simple [data.hafro.is](http://data.hafro.is) is just HTTP and CSV\
-  (this directory tree is transparent, easy to maintain and use)
-* The successful [stockassessment.org](http://stockassessment.org) uses
-  makefiles\
-  (a makefile implements the flow of input->model->output)
 * R scripts are already used by many to organize their stock assessments
 
 ## Virtual Machines
 
 * Some models run only in Linux, while some run only in Windows
 * Therefore, the web interface will probably have two buttons:\
-  `Run makefile in Linux`\
-  `Run makefile in Windows`
+  `Run model in Linux`\
+  `Run model in Windows`
 * These buttons would invoke separate virtual machines
 
 ## Library of Platforms and Models
@@ -243,9 +231,6 @@ replicated at a future date and also be rerun the following year with minimal ch
 
 # Deliverables
 
-## Input database
-
-* Implement a database of validated quality controlled input data that can be read online
 
 ## Output database
 
@@ -261,13 +246,16 @@ replicated at a future date and also be rerun the following year with minimal ch
 
 ## Computational Server
 
-* Implement a linux server that can run R scripts, run executables, access the web
-* Implement a windows server that can run R scripts, run executables, access the web
+* Implement a Linux server that can run R scripts, run executables, access the web
+* Implement a Windows server that can run R scripts, run executables, access the web
 
 ## Web access to Computational server
 
 * implement a user interface on a webserver and show on the sharepoint (http://taf.ices.dk/)
 
+## Input database (dependent on progress)
+
+* Implement a database of validated quality controlled input data that can be read online
 
 
 
@@ -280,7 +268,7 @@ replicated at a future date and also be rerun the following year with minimal ch
 * Step 1: server showing a simple message on a webpage
 * Step 2: server providing a directory tree of CSV files
 * Step 3: server that allows users to upload data
-* Step 4: server that runs a makefile
+* Step 4: server that runs R scripts
 
 ## Test Cases
 
@@ -292,7 +280,7 @@ replicated at a future date and also be rerun the following year with minimal ch
 
 ## Web Server (Operational)
 
-* Step 5: server that maintains all files inside Git version control
+* Step 5: server that archives files
 * Step 6: server with early user interface
 
 ## Deployment
@@ -317,19 +305,25 @@ replicated at a future date and also be rerun the following year with minimal ch
 * Web server
 * Data server
 
-## databases / Archives
+## Databases / Archives
 
 * Input database
 * Output database
-* code archive
-* methods / executable archive
+* Code archive
+* Methods / executable archive
 
-## Services
+## Services (Data Centre support)
 
-* webservices to DATRAS
-* webservices to Intercatch
-* webservices to RDB
-* access to output database by standard graphs
+* website with buttons
+* virtualisation server to host computational servers
+* Archive for input files
+* Archive for scripts
+* Archive for software (ADMB, compilers, R, model executables and dlls, etc.)
+* Archive for output
+* web services to DATRAS
+* web services to Intercatch
+* web services to RDB
+* access to output database by standard graphs DB
 
 
 
