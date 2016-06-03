@@ -16,30 +16,27 @@ output:
 
 * ...
 
-
 <br>
 
 # Project Background
 
-## ICES stock assessment current working practices
+## ICES Stock Assessment Current Working Practices
 
 * Working groups, benchmarks, update assessments
 * Input, model, output
 * Sharepoint, report, stock annex, graphs
 
-
-
 <br>
 
 # Project Overview / Description
 
-## Core issues to address
+## Core Issues to Address
 
-* Hard to find data
+* Hard to find assessment data that were used
 * Hard to rerun model
 * Sharepoint files are not directly accessible
 
-## Percieved benefits
+## Percieved Benefits
 
 * transparency
 * reproduceability
@@ -49,23 +46,25 @@ output:
 * time efficiency?
 * protection against loss of "institutional memory"
 
-## Project design guide
+## Project Design Guide
 
-* "empty desk scenario": with only internet access anyone can rerun a stock assessment.
+* "empty desk scenario": with only internet access anyone can rerun a stock
+  assessment.
 * encapsulated framework
 * use existing procedures and processes
 * reliable and simple
 
-## constraints
+## Constraints
 
 * deliver in 2 years
 
+<br>
 
 # Aim
 
-*To implement a system that will give stock assessors the tools<br>
- to archive their data, methods and results, so that they can be<br>
- replicated at a future date and also be rerun the following year<br>
+*To implement a system that will give stock assessors the tools\
+ to archive their data, methods and results, so that they can be\
+ replicated at a future date and also be rerun the following year\
  with minimal changes*
 
 <br>
@@ -98,36 +97,46 @@ output:
 * Some desired functionality will be sacrificed
 * The system must still work if/when Arni & Colin leave
 
-
 <br>
 
 # Scope
 
-## The system **will**
+## The System **Will**
+
 * work for all stock assessments
 * allow assessments to be rerun quickly
-* allow alternative assessments to be archived (i.e. allow multple assessment runs)
+* allow alternative assessments to be archived (i.e. allow multiple assessment
+  runs)
 * provide a way to track changes in input data from year to year
 * provide a way to track changes in assessment scripts from year to year
 * require experts to use R in their stock assessments
 
-## The system **will not**
+## The System **Will Not**
+
 * archive user code for ad-hoc analyses
 
-## The system **might**
+## The System **Might**
+
 * allow users to work from their own hard drives
 * allow users to use different analysis software?
-
 
 <br>
 
 <!-- # Evaluation Criteria
 
-## 
+##
 -->
 
+<br>
 
+# Risks
 
+## Possible Negative Outcomes
+
+* The new framework might turn out to be unreliable, files are lost, etc.
+* The new framework might turn out to be impractical, not adopted in the end
+* The new framework might not be operational at the time when Arni and Colin
+  leave
 
 <br>
 
@@ -160,14 +169,13 @@ output:
 * This allows data to flow between programs, and supports scripting
 * Feedback from informal user surveys has focused on this point
 
-
 <br>
 
-# Workflow options (one idea)
+# Workflow Options (One Idea)
 
-## Fist time use
+## First Time Use
 
-* Upload final input data to input database
+* upload final input data to input database
 * write script to read data from input database
 * write script to do data manipulation
 * write script to run model (define executable etc.)
@@ -178,9 +186,9 @@ output:
 * check input data and results
 * click *finalise assessment* to archive the assessment
 
-## Update assessment
+## Update Assessment
 
-* Upload final input data to input database
+* upload final input data to input database
 * download working directory structure
 * amend script to read data from input database
 * amend script to do data manipulation
@@ -190,12 +198,10 @@ output:
 * check input data and results
 * click *finalise assessment* to archive the assessment
 
-## Rerun assessment
+## Rerun Assessment
 
 * click *run model*
 * check input data and results
-
-
 
 <br>
 
@@ -228,36 +234,37 @@ output:
 
 <br>
 
-
 # Deliverables
 
-
-## Output database
+## Output Database
 
 * implement a database of standard outputs from final stock assessment runs
 
-## Code archive
+## Code Archive
 
-* Develop an archive of code used to run stock assessments that is accessible online
+* Develop an archive of code used to run stock assessments that is accessible
+  online
 
-## Methods (tools) archive
+## Methods (Tools) Archive
 
 * develop an archive of computational tools (to be available on line?)
 
 ## Computational Server
 
-* Implement a Linux server that can run R scripts, run executables, access the web
-* Implement a Windows server that can run R scripts, run executables, access the web
+* Implement a Linux server that can run R scripts, run executables, access the
+  web
+* Implement a Windows server that can run R scripts, run executables, access the
+  web
 
-## Web access to Computational server
+## Web Access to Computational Server
 
-* implement a user interface on a webserver and show on the sharepoint (http://taf.ices.dk/)
+* implement a user interface on a webserver and show on the sharepoint
+  (http://taf.ices.dk/)
 
-## Input database (dependent on progress)
+## Input Database (Dependent on Progress)
 
-* Implement a database of validated quality controlled input data that can be read online
-
-
+* Implement a database of validated quality controlled input data that can be
+  read online
 
 <br>
 
@@ -293,10 +300,9 @@ output:
 * Step 7: complete user interface, based on feedback from first WG
 * Step 8: other improvements, as needed
 
-
 <br>
 
-# Resources required
+# Resources Required
 
 ## Servers
 
@@ -312,19 +318,15 @@ output:
 * Code archive
 * Methods / executable archive
 
-## Services (Data Centre support)
+## Services (Data Centre Support)
 
 * website with buttons
 * virtualisation server to host computational servers
-* Archive for input files
-* Archive for scripts
-* Archive for software (ADMB, compilers, R, model executables and dlls, etc.)
-* Archive for output
+* archive for input files
+* archive for scripts
+* archive for software (ADMB, compilers, R, model executables and dlls, etc.)
+* archive for output
 * web services to DATRAS
 * web services to Intercatch
 * web services to RDB
 * access to output database by standard graphs DB
-
-
-
-
