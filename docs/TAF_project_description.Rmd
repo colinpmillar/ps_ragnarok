@@ -137,7 +137,8 @@ output:
 * The new framework might turn out to be impractical, not adopted in the end
 * The new framework might not be operational at the time when Arni and Colin
   leave
-* Stock coordinators refuse to upload data according to the specified protocol
+* Stock coordinators might refuse to upload data according to the specified
+  protocol
 
 <br>
 
